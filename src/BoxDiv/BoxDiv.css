@@ -1,0 +1,33 @@
+
+.BoxDiv {
+    overflow-y: hidden;
+    position: relative; 
+  }
+  
+.BoxDiv::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/bg-img.png');
+    background-size: cover;
+    filter: blur(10px); /* Adjust the blur radius as needed */
+    z-index: -1; /* Ensure the overlay is behind other content */
+  }
+  
+  
+  .selected {
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.75),
+                0 0 15px 5px rgba(255, 255, 255, 0.75) inset; /* Add inset for inner shadow */
+    border-radius: 5px;
+    font-style: italic;
+    text-decoration: underline;
+  }
+  
+  .not-selected {
+    border: solid 1px; /* Shorter syntax for border style */
+    border-radius: 2px;
+  }
+  

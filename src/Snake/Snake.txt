@@ -1,0 +1,39 @@
+import React, { useEffect, useState } from 'react';
+import './Snake.css';
+
+export default function Snake() {
+  const totalCells = 100; // Adjust for desired number of cells
+
+  const gridSize = Math.sqrt(totalCells); // Calculate grid size based on total cells
+
+  const [position, setPosition] = useState(0);
+
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      // ... (same key handling logic)
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
+  return (
+    <div className="d-flex justify-content-center align-items-center text-center vh-100 Snake">
+      <div className="embed-responsive embed-responsive-1by1 container">
+        <div className="row">
+          {Array.from({ length: totalCells }).map((_, index) => (
+            <div
+              key={index}
+              className={`col bg-secondary cell ${position === index ? 'selected' : 'not-selected'}`}
+            >
+              <span style={{ color: position === index ? 'black' : 'white' }}>boo</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}

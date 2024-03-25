@@ -1,0 +1,60 @@
+import { useState } from 'react';
+import './App.css';
+
+function Countries() {
+  const [selectedCountry, setSelectedCountry] = useState(''); 
+
+  const countries = [
+    { name: "India", capital: "New Delhi" },
+    { name: "Pakistan", capital: "Islamabad" },
+    { name: "Bangladesh", capital: "Dhaka" },
+    { name: "Nepal", capital: "Kathmandu" },
+    { name: "Sri Lanka", capital: "Sri Jayawardenepura Kotte" },
+    { name: "Bhutan", capital: "Thimphu" },
+    { name: "Myanmar", capital: "Naypyidaw" },
+    { name: "Indonesia", capital: "Jakarta" },
+  ];
+
+  const handleCountryChange = (event) => {
+    const selectedName = event.target.text;
+    setSelectedCountry(selectedName);
+  };
+
+  const selectedCapital = countries.find(
+    (country) => country.name === selectedCountry
+  )?.capital || 'Capital will be displayed here';
+
+  return (
+    <>
+      <div className='container'>
+        <div className='row justify-content-center mt-5'>
+          <div className='col-md-6'>
+            <div className='dropdown'>
+              <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                Please select Country
+              </button>
+              <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                {countries.map((country) => (
+                  <li key={country.name}>
+                    <button className="dropdown-item" type="button" onClick={handleCountryChange}>
+                      {country.name}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className='row justify-content-center mt-3'>
+          <div className='col-md-6'>
+            <div className='text-center'>
+              {selectedCapital}
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default Countries;
